@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crop-yield-prediction"
+version = "0.1.0"
+description = "End-to-end crop yield prediction pipeline with live weather, soil, and NDVI enrichment."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "fastapi>=0.115.0,<1.0.0",
+  "joblib>=1.4.2,<2.0.0",
+  "numpy>=1.26.4,<3.0.0",
+  "pandas>=2.2.2,<3.0.0",
+  "pydantic>=2.8.2,<3.0.0",
+  "pydantic-settings>=2.4.0,<3.0.0",
+  "python-dotenv>=1.0.1,<2.0.0",
+  "requests>=2.32.3,<3.0.0",
+  "scikit-learn>=1.5.1,<2.0.0",
+  "uvicorn>=0.30.5,<1.0.0",
+  "xgboost>=2.1.1,<3.0.0",
+]
+
+[project.optional-dependencies]
+geo = [
+  "planetary-computer>=1.0.0,<2.0.0",
+  "pystac-client>=0.8.3,<1.0.0",
+  "rasterio>=1.3.10,<2.0.0",
+]
+api = []
+dev = [
+  "pytest>=8.3.2,<9.0.0",
+  "ruff>=0.6.2,<1.0.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
